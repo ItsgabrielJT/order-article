@@ -1,6 +1,15 @@
 # OrdersArticlesBack
 
+Application made with Spring Boot and Vite + React
+
+## Versions
+
+- Java 17
+- NodeJS 18.20.1
+- React ^18.2.0
+
 ## Build Backend
+
 The application it is accessible under `localhost:8080`.
 
 The application can be built using the following command:
