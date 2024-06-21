@@ -24,6 +24,5 @@ public class OrderDTO {
 
     private UUID clientUuid;
 
-    private List<UUID> articleUuid;
 
 }

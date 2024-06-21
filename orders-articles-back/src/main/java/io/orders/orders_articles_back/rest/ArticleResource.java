@@ -53,11 +53,11 @@ public class ArticleResource {
         return ResponseEntity.ok(uuid);
     }
 
-    @DeleteMapping("/{uuid}")
-    @ApiResponse(responseCode = "204")
-    public ResponseEntity<Void> deleteArticle(@PathVariable(name = "uuid") final UUID uuid) {
-        articleService.delete(uuid);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/{uuid}")
+//    @ApiResponse(responseCode = "204")
+//    public ResponseEntity<Void> deleteArticle(@PathVariable(name = "uuid") final UUID uuid) {
+//        articleService.delete(uuid);
+//        return ResponseEntity.noContent().build();
+//    }
 
 }

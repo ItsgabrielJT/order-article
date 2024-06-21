@@ -9,4 +9,5 @@ public interface ArticleRepository extends JpaRepository<Article, UUID> {
 
     boolean existsByCodIgnoreCase(String cod);
 
+    Article findAllByUuid(UUID articleUuid);
 }
