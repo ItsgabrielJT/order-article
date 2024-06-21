@@ -51,15 +51,6 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
-    public void delete(final UUID uuid) {
-        final Article article = articleRepository.findById(uuid)
-                .orElseThrow(NotFoundException::new);
-        // remove many-to-many relations at owning side
-        orderRepository.findAllByArticleUuid(article)
-                .forEach(order -> order.getArticleUuid().remove(article));
-        articleRepository.delete(article);
-    }
-
     private ArticleDTO mapToDTO(final Article article, final ArticleDTO articleDTO) {
         articleDTO.setUuid(article.getUuid());
         articleDTO.setCod(article.getCod());

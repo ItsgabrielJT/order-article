@@ -1,11 +1,7 @@
 package io.orders.orders_articles_back.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -42,8 +38,8 @@ public class Article {
     @Column(nullable = false)
     private Double price;
 
-    @ManyToMany(mappedBy = "articleUuid")
-    private Set<Order> orderUuid;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderArticle> orderArticles;
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "datetime2")

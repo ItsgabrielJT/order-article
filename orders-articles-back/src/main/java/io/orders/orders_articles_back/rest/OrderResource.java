@@ -1,5 +1,7 @@
 package io.orders.orders_articles_back.rest;
 
+import io.orders.orders_articles_back.domain.OrderArticle;
+import io.orders.orders_articles_back.model.OrderArticleDTO;
 import io.orders.orders_articles_back.model.OrderDTO;
 import io.orders.orders_articles_back.service.OrderService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,20 +31,26 @@ public class OrderResource {
         this.orderService = orderService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<OrderDTO>> getAllOrders() {
-        return ResponseEntity.ok(orderService.findAll());
-    }
+//    @GetMapping
+//    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+//        return ResponseEntity.ok(orderService.findAll());
+//    }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<OrderDTO> getOrder(@PathVariable(name = "uuid") final UUID uuid) {
-        return ResponseEntity.ok(orderService.get(uuid));
-    }
+//    @GetMapping("/{uuid}")
+//    public ResponseEntity<OrderDTO> getOrder(@PathVariable(name = "uuid") final UUID uuid) {
+//        return ResponseEntity.ok(orderService.get(uuid));
+//    }
 
+//    @PostMapping
+//    @ApiResponse(responseCode = "201")
+//    public ResponseEntity<UUID> createOrder(@RequestBody @Valid final OrderDTO orderDTO) {
+//        final UUID createdUuid = orderService.create(orderDTO);
+//        return new ResponseEntity<>(createdUuid, HttpStatus.CREATED);
+//    }
     @PostMapping
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<UUID> createOrder(@RequestBody @Valid final OrderDTO orderDTO) {
-        final UUID createdUuid = orderService.create(orderDTO);
+    public ResponseEntity<UUID> createOrder(@RequestBody @Valid final List<OrderArticleDTO> orderArticlesDto) {
+        final UUID createdUuid = orderService.createOrder(orderArticlesDto).getUuid();
         return new ResponseEntity<>(createdUuid, HttpStatus.CREATED);
     }
 

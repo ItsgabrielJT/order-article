@@ -1,16 +1,7 @@
 package io.orders.orders_articles_back.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -49,13 +40,8 @@ public class Order {
     @JoinColumn(name = "client_uuid_id")
     private Client clientUuid;
 
-    @ManyToMany
-    @JoinTable(
-            name = "OrderArticle",
-            joinColumns = @JoinColumn(name = "orderUuid"),
-            inverseJoinColumns = @JoinColumn(name = "articleUuid")
-    )
-    private Set<Article> articleUuid;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderArticle> orderArticles;
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "datetime2")

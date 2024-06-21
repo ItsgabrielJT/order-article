@@ -12,10 +12,6 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
 
     Order findFirstByClientUuid(Client client);
 
-    Order findFirstByArticleUuid(Article article);
-
-    List<Order> findAllByArticleUuid(Article article);
-
     boolean existsByCodIgnoreCase(String cod);
 
 }
